@@ -1,1 +1,1 @@
-web: node bot.py
+web: bot.py
