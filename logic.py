@@ -1,5 +1,6 @@
 from config import bot
 from telebot import types
+import qrcode, PIL
 
 import telebot
 import os
@@ -97,12 +98,18 @@ Country code: {message.from_user.language_code}
 id chat: {message.chat.id}
 Chat type: {message.chat.type}
                 ''')
+
+    if message.text == '/qr':
+            bot.send_message(message.chat.id, 'I can make QR code, send me NAME for your QR code!')
+
     else:
         bot.send_message(message.chat.id, "Sorry, i don't understand you! Write /help ")
+
 
 @bot.message_handler(content_types=['sticker'])
 def handler_sticker(message):
     bot.send_message(message.chat.id, 'Sticker ID: ' + message.sticker.file_id)
+
 
 # Start webhook
 if "HEROKU" in list(os.environ.keys()):
